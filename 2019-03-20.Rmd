@@ -97,4 +97,15 @@ class(dtObject)
 ```{r}
 dtObject
 ```
+```{r}
+twDateTime <- ymd_hms("2019-03-18 14:04:00", tz="Asia/Taipei")
+
+LisbonDateTime <- with_tz(twDateTime,tzone="Europe/Lisbon")
+
+LisbonDateTime
+```
+```{r}
+twDateTime <- mdy_hms("3/14/2019 8:18:47", tz="Asia/Taipei")
+twDateTime
+```
 
