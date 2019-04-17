@@ -142,7 +142,7 @@ head(currency)
 ```
 
 ```{r}
-head(currency == "歐元USD/EUR")
+head(currency == "歐元USD/EUR"
 
 isEURO <- currency == "歐元USD/EUR"
 ```
@@ -201,3 +201,46 @@ sn
 sn/mn
 ```
 
+
+
+
+
+
+
+
+```{r}
+aLogical <- c(T,TRUE,F,FALSE,FALSE)
+class(aLogical)
+sum(aLogical)
+```
+
+```{r}
+studentMajors <- factor(
+  c("經濟系", "經濟系", "法律系")
+)
+typeof(studentMajors)
+levels(studentMajors)
+studentMajors
+```
+
+```{r}
+y5 <- c("女","男","女")
+
+y5
+y5=="女"
+!(y5=="女")
+```
+
+```{r}
+library(lubridate)
+dtObject<-ymd_hms("1970-01-01 00:02:53") 
+dtObjectVector<-ymd_hms(
+  c("1970-01-01 00:02:53",
+    "1980-02-11 11:25:22")
+)
+class(dtObject)
+dtObject
+```
+
+semester100 <- schoolYear == 100
+semester100
