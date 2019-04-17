@@ -21,9 +21,8 @@ studentRecord <-
     )
   )
 
-studentRecord[["學號"]]
-
-
+studentRecord[["姓名"]]
+studentRecord[["學年平均成績"]][[3]]
 ```
 
 ```{r}
@@ -36,13 +35,29 @@ plasticContainer <- list(
 plasticContainer[["greenBox"]] 
 plasticContainer[[1]]
 
+
 x <- plasticContainer[["greenBox"]] 
 x[[1]]
 
 plasticContainer[["greenBox"]][[1]]
+```
 
+```{r}
 plasticContainer[c("greenBox","redBox")] 
-plasticContainer[c(1,2)]
+plasticContainer[c(1,2,3)]
+
+```
+
+```{r}
+extract1 <- plasticContainer[c("greenBox")]
+extract2 <- plasticContainer[[c("greenBox")]]
+extract1
+extract2
+```
+
+```{r}
+extract1[[1]][[1]]
+extract2[[1]]
 ```
 
 ```{r}
