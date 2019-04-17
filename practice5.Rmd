@@ -61,6 +61,11 @@ extract2[[1]]
 ```
 
 ```{r}
+length(plasticContainer)
+plasticContainer[c(T,F,T)]
+```
+
+```{r}
 成績單 <- c(
   個經=90,
   總經=77,
