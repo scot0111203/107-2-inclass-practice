@@ -155,4 +155,11 @@ birthday <- filmVotingData$`出生西元年月日（驗證本人用）`
 timeStamp <- filmVotingData$Timestamp
 ```
 
+```{r}
+str_length(birthday) == 8
+logicCorrect <- str_length(birthday) == 8
+favoriteTwo[logicCorrect] -> favorite
+favorite
+``` 
+ 
  
