@@ -6,6 +6,103 @@ output: html_document
 ---
 
 ```{r}
+Vec1 <- c(1:6)
+Vec1
+```
 
+```{r}
+Mat1 <- matrix(
+  c(1:6) , 2,3
+)
+Mat1
+class(Mat1)
+typeof(Mat1)
+Mat1[[2]]
+```
+
+```{r}
+Mat2 <- matrix(
+  c("a","b","c","d") ,2 ,2
+  
+)
+Mat2
+```
+
+```{r}
+StuList <- list(
+  學號=c(172,214,322,425,517),
+  姓名=c("小明","大雄","胖虎","小新","大白"),
+  成績=c(80,60,90,70,50)
+  )
+StuList 
+```
+
+```{r}
+StuDF <- data.frame(
+  學號=c(172,214,322,425,517),
+  姓名=c("小明","大雄","胖虎","小新","大白"),
+  成績=c(80,60,90,70,50)
+  )
+StuDF 
+```
+
+```{r}
+class(StuDF)
+typeof(StuDF)
+```
+
+```{r}
+class(StuDF$姓名)
+StuDF$姓名 <- as.character(StuDF$姓名)
+class(StuDF$姓名)
+StuDF[[2]][[3]]
+```
+
+```{r}
+class(StuList)
+as.data.frame(StuList) -> StuDF3
+
+class(StuDF3)
+```
+
+```{r}
+StuDF3
+```
+
+```{r}
+as.data.frame(StuList,stringsAsFactors = F) -> StuDF4
+class(StuDF4)
+```
+
+```{r}
+StuDF4
+```
+
+```{r}
+LETTERS
+chosenLETTERS <- LETTERS[1:15]
+matObj1 <- matrix(chosenLETTERS,5,3)
+matObj1
+matObj1[[8]]
+
+```
+
+```{r}
+matObj1
+matObj1[3,2] 
+matObj1[c(1,5),c(2,3)]
+matObj1[c(F,F,TRUE,F,F),c(F,TRUE,F)]
+```
+
+```{r}
+library(readr)
+classSurvey <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/classSurvey.csv")
+```
+
+```{r}
+dim(classSurvey)
+nrow(classSurvey)
+ncol(classSurvey)
+classSurvey[c(1:60),c(4,5)]
 ```
 
