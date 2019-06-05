@@ -54,7 +54,7 @@ names(invoiceList) <-
 ```
 
 ```{r}
-names(invoiceList)[[2]] <- "訂單時區之下單時間"
+names(invoiceList$`訂單時間(以訂單時區顯示)`) <- "訂單時區之下單時間"
 invoiceList
 ```
 
@@ -107,7 +107,7 @@ sampledTranscriptData$學系
 ```{r}
 (sampledTranscriptData$系碼!="73" & 
    sampledTranscriptData$學系=="經濟學系") -> logiCheck
-sampledTranscriptData$學號[logiCheck] %>% unique() -> changeMajorStudent
+unique(sampledTranscriptData$學號[logiCheck]) -> changeMajorStudent
 
 changeMajorStudent
 ```

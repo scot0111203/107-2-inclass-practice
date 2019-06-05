@@ -75,6 +75,7 @@ demand_supply_fun <- function(P,a,b,c,d){
     )
   )
 }
+demand_supply_fun(1,2,3,4,5)
 ```
 
 ```{r}
