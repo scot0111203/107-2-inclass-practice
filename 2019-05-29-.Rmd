@@ -145,3 +145,455 @@ gpa_fun("92aS67fee") # 顯示82.85276
 gpa_fun("aa829838s") # 查無此學號
 ```
 
+
+
+
+
+# iteration
+ 
+```{r}
+load(url("https://github.com/tpemartin/github-data/blob/master/loopTranscriptData.Rda?raw=true"))
+```
+
+```{r}
+gpa_fun(transcriptDataFinal$學號[[1]])
+```
+
+```{r}
+studentIds <- unique(transcriptDataFinal$學號) # 全部可能學號
+```
+
+sequence_source
+```{r}
+# 以前5筆學號為sequence_source
+studentIds5 <- studentIds[1:5]
+studentIds5
+```
+
+作法一
+```{r}
+for(i in studentIds5){
+  print(i)
+}
+```
+
+
+```{r}
+gpa_fun(studentIds5[[1]])
+for(i in studentIds5){
+  print(i)
+  print(gpa_fun(i))
+}
+```
+
+作法二：
+```{r}
+c(1:5)
+```
+
+```{r}
+for(i in c(1:5)){
+  print(i) 
+}
+```
+
+```{r}
+for(i in c(1:5)){
+  print(i)
+  print(studentIds5[[i]]) # 
+}
+```
+
+
+seq_along()
+```{r}
+seq_along(studentIds5)
+```
+
+```{r}
+for(i in seq_along(studentIds5)){
+  print(i)
+  print(studentIds5[[i]])
+}
+```
+
+## 範例2
+
+```{r}
+gmailAddress <- c(
+  "tim@gmail.com",
+  "anita",
+  "yellen@gmail.com",
+  "huang@gmail.com"
+)
+```
+
+```{r}
+# 作法一
+for(i in gmailAddress){
+  print(i)
+}
+```
+
+```{r}
+# 作法二
+for(i in c(1:4) ){
+  print(i)
+  print(gmailAddress[i])
+}
+```
+
+```{r}
+# 作法三
+for(i in seq_along(gmailAddress)){
+  print(i)
+  print(gmailAddress[i])
+}
+```
+
+# 範例2：
+
+```{r}
+gmailAddress <- c(
+  "tim@gmail.com",
+  "anita",
+  "yellen@gmail.com",
+  "huang@gmail.com"
+)
+```
+
+任務：檢查gmailAddress「每個」元素，若沒有寫“@gmail.com”則加上。
+
+## sequence source
+```{r}
+gmailAddress
+i <- 1
+gmailAddress[[i]]
+```
+
+
+## body
+任務：檢查gmailAddress「第i個」元素(令i<-1)，若沒有寫“@gmail.com”則加上。
+```{r}
+gmailAddress <- c(
+  "tim@gmail.com",
+  "anita",
+  "yellen@gmail.com",
+  "huang@gmail.com"
+)
+i<-2
+library(stringr)
+if(!str_detect(gmailAddress[i],"@gmail.com")){
+  str_c(gmailAddress[[i]],"@gmail.com") -> correctGmailAddress
+  correctGmailAddress -> gmailAddress[i]
+}
+```
+
+```{r}
+gmailAddress[[i]]
+```
+
+
+## for loop
+```{r}
+# 開始設定
+gmailAddress <- c(
+  "tim@gmail.com",
+  "anita",
+  "yellen@gmail.com",
+  "huang@gmail.com"
+)
+cat("起始狀況\n")
+gmailAddress
+# for loop
+for(i in seq_along(gmailAddress)){
+  if(!str_detect(gmailAddress[[i]],"@gmail.com")){
+    correctGmailAddress <-
+      str_c(gmailAddress[[i]],"@gmail.com")
+    gmailAddress[[i]] <- correctGmailAddress
+  }
+}
+cat("修正後狀況\n")
+gmailAddress
+```
+
+# Commit history
+
+```{r}
+load(url("https://www.dropbox.com/s/qnz9paigf61yjus/commitHistory.Rda?raw=1"))
+```
+
+任務0：print「每個」commit的author。
+
+## sequence source
+```{r}
+commitHistory
+```
+
+
+## body
+print「第i個」commit的author。
+
+```{r}
+i<-1
+print(commitHistory[[i]][["commit"]][["author"]][["name"]])
+```
+
+
+## for loop
+
+```{r}
+for(i in seq_along(commitHistory)){
+  print(commitHistory[[i]][["commit"]][["author"]][["name"]])
+}
+```
+
+
+```{r}
+for(i in seq_along(commitHistory)){
+  print(
+    str_c(
+      "Author is ",
+      commitHistory[[i]][["commit"]][["author"]][["name"]],
+      ". Committer is ",
+      commitHistory[[i]][["commit"]][["committer"]][["name"]]
+      )
+    )
+}
+```
+
+
+任務0：print「每個」commit的author等於committer的邏輯判斷結果。
+
+## sequence source
+```{r}
+commitHistory
+```
+
+## body
+print「第i個」commit的author等於committer的邏輯判斷結果。
+```{r}
+i <- 1
+commitHistory[[i]][["commit"]][["author"]][["name"]] == commitHistory[[i]][["commit"]][["committer"]][["name"]] ->g
+g
+```
+
+## for loop
+```{r}
+for(i in seq_along(commitHistory)){
+  (commitHistory[[i]][["commit"]][["author"]][["name"]]==
+     commitHistory[[i]][["commit"]][["committer"]][["name"]]) ->
+    logiResult
+  print(logiResult)  
+}
+```
+
+
+# Output
+
+```{r}
+saveCharacter <- vector("character",5)
+saveCharacter
+```
+```{r}
+saveNumeric <- vector("numeric",5)
+saveNumeric
+```
+```{r}
+saveLogical <- vector("logical",5)
+saveLogical
+```
+
+```{r}
+saveList <- vector("list",5)
+saveList
+```
+```{r}
+# 把"你好"存在saveCharacter第3個位置
+saveCharacter # 儲存前
+saveCharacter[[3]] <- "你好"
+saveCharacter # 儲存後
+saveCharacter[[1]] <- "沒事"
+saveCharacter
+```
+
+```{r}
+# 把 72.3 存在saveNumeric第3個位置
+saveNumeric # 儲存前
+saveNumeric[[3]] <- 72.3
+saveNumeric # 儲存後
+```
+
+```{r}
+# 把 TRUE 存在saveLogical第3個位置
+saveLogical # 儲存前
+saveLogical[[3]] <- TRUE
+saveLogical # 儲存後
+```
+
+```{r}
+# 把 list(姓名="小明",電話="02-86741111") 存在saveList第3個位置
+saveList # 儲存前
+saveList[[3]] <- list(姓名="小明",電話="02-86741111")
+saveList # 儲存後
+```
+
+
+## 範例3 
+
+```{r}
+load(url("https://www.dropbox.com/s/duh5aaqgl2f5m3z/loopTranscriptData.Rda?raw=1"))
+studentIds <- unique(transcriptDataFinal$學號) # 全部可能學號
+studentIds5 <- studentIds[1:5] # 前5筆學號
+```
+
+任務: 將transcriptDataFinal資料中[每個]學號的平均成績算出來並儲存
+
+### 0. Saving container
+平均成績 is numeric
+
+```{r}
+saveGPA5 <- vector("numeric",length(studentIds5))
+saveGPA5
+```
+
+### 1. sequence source
+```{r}
+studentIds5
+```
+
+### 2. body
+資料中[第i個]學號的平均成績算出來並儲存
+
+```{r}
+i <- 1
+gpa_fun(studentIds5[[i]]) -> saveGPA5[[i]]
+```
+
+```{r}
+saveGPA5
+```
+
+### 3. for loop
+```{r}
+saveGPA5 <- vector("numeric", length(studentIds5))
+for(i in seq_along(studentIds5)){
+  gpa_fun(studentIds5[[i]]) -> saveGPA5[[i]]
+}
+saveGPA5
+```
+
+```{r}
+names(saveGPA5) <- studentIds5
+saveGPA5
+```
+
+## 練習
+
+任務一：存下來每個commit的author。
+
+```{r}
+load(url("https://www.dropbox.com/s/qnz9paigf61yjus/commitHistory.Rda?raw=1"))
+```
+
+### 0. saving container
+```{r}
+saveCommitAuthor <- vector("character",length(commitHistory))
+saveCommitAuthor
+```
+
+### 1. sequence source
+```{r}
+commitHistory
+```
+
+### 2. body
+存下來「第i個」commit的author。
+```{r}
+i<- 1
+saveCommitAuthor[[i]] <- commitHistory[[i]]$commit$author$name
+```
+
+```{r}
+saveCommitAuthor
+```
+
+### 3. for loop
+```{r}
+saveCommitAuthor <-
+  vector("character",length(commitHistory)) # 0.
+for(i in seq_along(commitHistory)){
+  commitHistory[[i]]$commit$author$name -> saveCommitAuthor[[i]]
+}
+saveCommitAuthor
+```
+
+
+任務三：存下來每個author與committer同人的commitDate。
+
+過渡任務：
+存下來每個commit的author, committer, commitDate.
+存下來每個commit的author==commiter的結果
+### 0. saving container
+```{r}
+saveEveryThing <- vector("list",length(commitHistory))
+saveSameLogi <- vector("logical",length(commitHistory))
+```
+
+### 1. sequence source
+```{r}
+commitHistory
+```
+
+### 2. body
+```{r}
+i <- 1
+author_i <- commitHistory[[i]]$commit$author$name
+committer_i <- commitHistory[[i]]$commit$committer$name
+commitDate_i <- commitHistory[[i]]$commit$committer$date
+(author_i==committer_i) -> saveSameLogi[[i]]
+list(
+  author=author_i,
+  committer=committer_i,
+  commitDate=commitDate_i
+) -> saveEveryThing[[i]]
+```
+
+檢查一下
+```{r}
+saveEveryThing
+saveSameLogi
+```
+
+### 3. for loop
+```{r}
+saveEveryThing <- vector("list",length(commitHistory))
+saveSameLogi <- vector("logical",length(commitHistory))
+for(i in seq_along(commitHistory)){
+  author_i <- commitHistory[[i]]$commit$author$name
+  committer_i <- commitHistory[[i]]$commit$committer$name
+  commitDate_i <- commitHistory[[i]]$commit$committer$date
+  
+  (author_i == committer_i) -> saveSameLogi[[i]]
+  
+  list(
+    author=author_i,
+    committer=committer_i,
+    commitDate=commitDate_i
+  ) -> saveEveryThing[[i]]  
+}
+```
+
+```{r}
+saveEveryThing
+```
+
+```{r}
+print(saveSameLogi)
+```
+
+
+```{r}
+saveEveryThing[saveSameLogi] -> saveValidCommitDate
+saveValidCommitDate
+```
