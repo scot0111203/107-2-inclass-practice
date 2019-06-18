@@ -251,3 +251,39 @@ gpa_fun <- function(studentID){
 ```{r}
 gpa_fun( "105S60ba1")
 ```
+```{r}
+library(stringr)
+sample(99:103,15,replace = T)-> yy
+sample(1:12,15,replace=T)-> mm
+str_c("民國",str_pad(yy,3,"left","0"),"年",mm,"月") -> twDates
+
+library(stringr); library(lubridate)
+date_convert_twYM <- function(twDates){
+  #twDates
+  yyyy<-as.integer(str_extract(twDates,"(?<=(民國))[:digit:]+"))+1911
+  mm<-str_extract(twDates,"[:digit:]+(?=月)")
+  yyyymmdd <- ymd(str_c(yyyy,mm,"01",sep="-"))
+  return(yyyymmdd)
+}
+
+date_convert_twYM <- function(twDates,dd="01"){
+  yyyy<-as.integer(str_extract(twDates,"(?<=(民國))[:digit:]+"))+1911
+  mm<-str_extract(twDates,"[:digit:]+(?=月)")
+  yyyymmdd <- ymd(str_c(yyyy,mm,dd,sep="-"))
+  yyyymmdd
+}
+```
+
+```{r}
+utility_cobb_douglass2 <- function(x,y,.alpha=0.5,.beta=0.5){
+  utilValue <- x^.alpha*y^.beta
+  return(utilValue)
+}
+utility_cobb_douglass2(1,2) # 使用預設值
+utility_cobb_douglass2(1,2,0.5,0.8) # 自定參數值
+```
+
+```{r}
+
+```
+
